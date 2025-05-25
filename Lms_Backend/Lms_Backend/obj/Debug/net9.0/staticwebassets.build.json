@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "C7xfB4MMjAn7GKWuOp3Be8HLw/ut5gtc6yT2bgbc5VM=",
+  "Source": "Lms_Backend",
+  "BasePath": "_content/Lms_Backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

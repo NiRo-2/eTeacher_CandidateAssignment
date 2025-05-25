@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Lms_Backend.props" />
+</Project>
