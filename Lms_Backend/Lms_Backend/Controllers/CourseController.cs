@@ -34,6 +34,8 @@ namespace Lms_Backend.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest("ID is required.");
+
             var course = _courseService.GetCourseById(id);
             if (course == null) return NotFound();
             return Ok(course);
@@ -47,8 +49,18 @@ namespace Lms_Backend.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Course course)
         {
-            _courseService.AddCourse(course);
-            return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                _courseService.AddCourse(course);
+                return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -60,9 +72,21 @@ namespace Lms_Backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Course course)
         {
-            var result = _courseService.UpdateCourse(id, course);
-            if (!result) return NotFound();
-            return NoContent();
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest("ID is required.");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var result = _courseService.UpdateCourse(id, course);
+                if (!result) return NotFound();
+                return NoContent();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new { message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -73,12 +97,41 @@ namespace Lms_Backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest("ID is required.");
+
             var result = _courseService.DeleteCourse(id);
             if (!result) return NotFound();
             return NoContent();
         }
 
-        //TODO get all students for course
-        //TODO get all enrollments for course
+        /// <summary>
+        /// Retrieves all students enrolled in a course by its ID.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        [HttpGet("courses/{courseId}/students")]
+        public IActionResult GetStudentsByCourseId(string courseId)
+        {
+            if (string.IsNullOrWhiteSpace(courseId)) return BadRequest("courseId is required.");
+
+            var enrollments = _courseService.GetEnrollmentsByCourseId(courseId);
+            if (enrollments == null || !enrollments.Any()) return NotFound();
+            return Ok(enrollments);
+        }
+
+        /// <summary>
+        /// Retrieves all enrollments for a course by its ID.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        [HttpGet("courses/{courseId}/enrollments")]
+        public IActionResult GetEnrolmentsByCourseId(string courseId)
+        {
+            if (string.IsNullOrWhiteSpace(courseId)) return BadRequest("courseId is required.");
+
+            var enrollments = _courseService.GetEnrollmentsByCourseId(courseId);
+            if (enrollments == null || !enrollments.Any()) return NotFound();
+            return Ok(enrollments);
+        }
     }
 }

@@ -40,3 +40,13 @@ D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_Candid
 D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll

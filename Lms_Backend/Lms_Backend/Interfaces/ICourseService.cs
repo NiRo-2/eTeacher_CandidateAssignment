@@ -9,5 +9,6 @@ namespace Lms_Backend.Interfaces
         void AddCourse(Course course);
         bool UpdateCourse(string id, Course course);
         bool DeleteCourse(string id);
+        public List<Enrollment> GetEnrollmentsByCourseId(string courseId);
     }
 }

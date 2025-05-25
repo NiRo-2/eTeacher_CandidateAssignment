@@ -8,6 +8,7 @@ namespace Lms_Backend.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string StudentId { get; set; } = "";
         public string CourseId { get; set; } = "";
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTimeOffset EnrolledAt { get; set; } = DateTime.Now;
     }
 }

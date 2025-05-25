@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lms_Backend.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class EnrollmentController : Controller
     {
         private readonly IEnrollmentService _enrollmentService;
@@ -31,7 +33,9 @@ namespace Lms_Backend.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
-            var enrollment = _enrollmentService.GetEntorllmentById(id);
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest("ID is required.");
+
+            var enrollment = _enrollmentService.GetEnrollmentById(id);
             if (enrollment == null) return NotFound();
             return Ok(enrollment);
         }
@@ -44,9 +48,18 @@ namespace Lms_Backend.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Enrollment enrollment)
         {
-            //TODO validate enrollment data (e.g., check if student and course exist)
-            _enrollmentService.AddEnrollment(enrollment);
-            return CreatedAtAction(nameof(GetById), new { id = enrollment.Id }, enrollment);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            try
+            {
+                _enrollmentService.AddEnrollment(enrollment);
+                return CreatedAtAction(nameof(GetById), new { id = enrollment.Id }, enrollment);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (if logging is set up)
+                return BadRequest($"Error creating enrollment: {ex.Message}");
+            }
         }
 
         /// <summary>
@@ -58,6 +71,8 @@ namespace Lms_Backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Enrollment enrollment)
         {
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest("ID is required.");
+
             var result = _enrollmentService.UpdateEnrollment(id, enrollment);
             if (!result) return NotFound();
             return NoContent();
@@ -71,9 +86,43 @@ namespace Lms_Backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
+            if (string.IsNullOrWhiteSpace(id)) return BadRequest("ID is required.");
+
             var result = _enrollmentService.DeleteEnrollment(id);
             if (!result) return NotFound();
             return NoContent();
+        }
+
+        /// <summary>
+        /// Retrieves enrollments by student email.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpGet("by-email")]
+        public IActionResult GetEnrollmentsByStudentEmail([FromQuery]  string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return BadRequest("Email is required.");
+
+            var enrollments = _enrollmentService.GetEnrollmentsByStudentEmail(email);
+            if (enrollments == null || !enrollments.Any()) return NotFound();
+            return Ok(enrollments);
+        }
+
+        /// <summary>
+        /// Retrieves enrollments by student ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("by-student-id/{id}")]
+        public IActionResult GetEnrollmentsByStudentId(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return BadRequest("id is required.");
+
+            var enrollments = _enrollmentService.GetEnrollmentsByStudentId(id);
+            if (enrollments == null || !enrollments.Any()) return NotFound();
+            return Ok(enrollments);
         }
     }
 }

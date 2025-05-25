@@ -18,8 +18,11 @@ namespace Lms_Backend
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-            services.AddSingleton<ICourseService, CourseService>();
+
+            services.AddSingleton<IDataContext, DataContext>();
             services.AddSingleton<IEnrollmentService, EnrollmentService>();
+            services.AddSingleton<IStudentService, StudentService>();
+            services.AddSingleton<ICourseService, CourseService>();
         }
 
         // Configure middleware

@@ -5,21 +5,27 @@ namespace Lms_Backend.Services
 {
     public class EnrollmentService : IEnrollmentService
     {
-        private readonly Dictionary<string, Enrollment> _enrollments = new Dictionary<string, Enrollment>();
+        private readonly IDataContext _context;
+        private readonly ILogger<EnrollmentService> _logger;
+
+        public EnrollmentService(ILogger<EnrollmentService> logger,IDataContext dataContext)
+        {
+            _context = dataContext;
+            _logger = logger;
+        }
 
         // Get all enrollments
-        public List<Enrollment> GetAllEnrollments() => _enrollments.Values.ToList();
+        public List<Enrollment> GetAllEnrollments() => _context.Enrollments.Values.ToList();
 
         /// <summary>
         /// Retrieves an enrollment by its ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns>null if not found</returns>
-        public Enrollment? GetEntorllmentById(string id)
+        public Enrollment? GetEnrollmentById(string id)
         {
-            if (_enrollments.TryGetValue(id, out var enrollment))
-                return enrollment;
-            return null;
+            _context.Enrollments.TryGetValue(id, out var enrollment);
+            return enrollment;
         }
 
         /// <summary>
@@ -30,25 +36,83 @@ namespace Lms_Backend.Services
         {
             enrollment.Id = Guid.NewGuid().ToString(); // Ensure a new ID is generated
 
-            //TODO validate enrollment data (e.g., check if student and course exist)
-            //TODO validate course capacity - not to exceed max capacity
-            _enrollments[enrollment.Id] = enrollment;
+            //Validate student exists
+            var student = _context.Students.Values.FirstOrDefault(s => s.Id == enrollment.StudentId);
+            if (student == null)
+                throw new InvalidOperationException("Student does not exist.");
+            
+            //Validate course exists
+            var course = _context.Courses.Values.FirstOrDefault(c => c.Id == enrollment.CourseId);
+            if (course == null)
+                throw new InvalidOperationException("Course does not exist.");
+
+            //Validate course capacity
+            int currentEnrollmentCount = _context.Enrollments.Values.Count(e => e.CourseId == enrollment.CourseId); 
+            if (currentEnrollmentCount >= course.MaxCapacity)
+                throw new InvalidOperationException("Course has reached its maximum capacity.");
+
+            //all good, add the enrollment
+            enrollment.EnrolledAt = DateTimeOffset.Now;
+            if (!_context.Enrollments.TryAdd(enrollment.Id, enrollment))
+                throw new InvalidOperationException("Failed to add enrollment.");
         }
 
         /// <summary>
         /// Updates an existing enrollment by its ID
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="updatedEnrollment"></param>
+        /// <param name="enrollment"></param>
         /// <returns></returns>
-        public bool UpdateEnrollment(string id, Enrollment updatedEnrollment)
+        public bool UpdateEnrollment(string id, Enrollment enrollment)
         {
-            if (!_enrollments.ContainsKey(id)) return false;
+            if (!_context.Enrollments.ContainsKey(id)) return false;
 
-            _enrollments[id].StudentId = updatedEnrollment.StudentId;
-            _enrollments[id].CourseId = updatedEnrollment.CourseId;
-            _enrollments[id].EnrolledAt = updatedEnrollment.EnrolledAt;
+            //validate student id exists
+            var student = _context.Students.Values.FirstOrDefault(s => s.Id == enrollment.StudentId);
+            if (student == null)
+                throw new InvalidOperationException("Student does not exist.");
+
+            //validate course id exists
+            var course = _context.Courses.Values.FirstOrDefault(c => c.Id == enrollment.CourseId);
+            if (course == null)
+                throw new InvalidOperationException("Course does not exist.");
+
+            //Validate course capacity
+            int currentEnrollmentCount = _context.Enrollments.Values.Count(e => e.CourseId == enrollment.CourseId);
+            if (currentEnrollmentCount >= course.MaxCapacity && _context.Enrollments[id].CourseId != enrollment.CourseId)
+                throw new InvalidOperationException("Course has reached its maximum capacity.");
+
+            // Update the enrollment details
+            _context.Enrollments[id].StudentId = enrollment.StudentId;
+            _context.Enrollments[id].CourseId = enrollment.CourseId;
+            _context.Enrollments[id].EnrolledAt = enrollment.EnrolledAt;
             return true;
+        }
+
+        /// <summary>
+        /// Get all enrollments for a specific student by their email address
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public List<Enrollment> GetEnrollmentsByStudentEmail(string email)
+        {
+            var student = _context.Students.Values.FirstOrDefault(s => s.Id == email);
+            if (student == null)
+            {
+                _logger.LogWarning("No student found with email: {Email}", email);
+                return new List<Enrollment>();
+            }
+            return GetEnrollmentsByStudentId(student.Id);
+        }
+
+        /// <summary>
+        /// Get all enrollments for a specific student by their ID
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        public List<Enrollment> GetEnrollmentsByStudentId(string studentId)
+        {
+            return _context.Enrollments.Values.Where(e => e.StudentId == studentId).ToList();
         }
 
         /// <summary>
@@ -58,7 +122,7 @@ namespace Lms_Backend.Services
         /// <returns></returns>
         public bool DeleteEnrollment(string id)
         {
-            return _enrollments.Remove(id);
+            return _context.Enrollments.TryRemove(id,out _);
         }
     }
 }
