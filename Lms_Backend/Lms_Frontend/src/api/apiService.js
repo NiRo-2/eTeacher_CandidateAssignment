@@ -5,8 +5,18 @@ import { API_BASE_URL } from './config';
  * @returns {Promise<Array>} Returns a promise that resolves to an array of courses.
  */
 export async function fetchCourses() {
-  const res = await fetch(`${API_BASE_URL}/courses`);
+  const res = await fetch(`${API_BASE_URL}/course`);
   if (!res.ok) throw new Error('Failed to fetch courses');
+  return res.json();
+}
+
+/**
+ * 
+ * @returns {Promise<Array>} Returns a promise that resolves to an array of enrollments.
+ */
+export async function fetchEnrollments() {
+  const res = await fetch(`${API_BASE_URL}/enrollment`);
+  if (!res.ok) throw new Error('Failed to fetch enrollments');
   return res.json();
 }
 
@@ -15,19 +25,18 @@ export async function fetchCourses() {
  * @returns {Promise<Array>} Returns a promise that resolves to an array of students.
  */
 export async function fetchStudents() {
-  const res = await fetch(`${API_BASE_URL}/students`);
+  const res = await fetch(`${API_BASE_URL}/student`);
   if (!res.ok) throw new Error('Failed to fetch students');
   return res.json();
 }
 
-//TODO create course class
 /**
  * 
  * @param {*} course add new course
  * @returns 
  */
 export async function addCourse(course) {
-  const res = await fetch(`${API_BASE_URL}/courses`, {
+  const res = await fetch(`${API_BASE_URL}/course`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(course),

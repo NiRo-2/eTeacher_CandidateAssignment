@@ -1,4 +1,5 @@
 ﻿using Lms_Backend.Interfaces;
+using Lms_Backend.Models;
 using Lms_Backend.Services;
 
 namespace Lms_Backend
@@ -26,12 +27,12 @@ namespace Lms_Backend
             services.AddSingleton<ICourseService, CourseService>();
 
             //Add CORS support
-            var allowedOrigins = Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+            var allowedOrigins = Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? new string[] { };
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins(allowedOrigins ?? new string[] { })
+                    policy.WithOrigins(allowedOrigins)
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
@@ -43,11 +44,16 @@ namespace Lms_Backend
         {
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors("AllowFrontend"); // Use CORS policy to allow frontend access
+            app.UseCors("AllowFrontend");//cors - allow frontend access
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
             });
+
+            //Adding fake data to the in-memory database
+            var context = app.ApplicationServices.GetRequiredService<IDataContext>();
+            DbSeeder.Seed(context);
         }
     }
 }

@@ -16,11 +16,15 @@ export default function CourseList() {
   return (
     <div>
       <h2 className="text-xl font-semibold mb-4">Courses</h2>
-      <ul className="list-disc pl-5">
-        {courses.map(course => (
-          <li key={course.id}>{course.title}</li>
-        ))}
-      </ul>
+      {courses.length === 0 ? (
+        <p>No courses available.</p>
+      ) : (
+        <ul className="list-disc pl-5">
+          {courses.map(course => (
+            <li key={course.id}>{course.name} - {course.description}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
