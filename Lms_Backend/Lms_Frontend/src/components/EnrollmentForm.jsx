@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { fetchEnrollments } from '../api/apiService';
+import { fetchEnrollments_WithDetails } from '../api/apiService';
 
 export default function EnrollmentList() {
-  const [enrollments, setEnrollment] = useState([]);
+  const [enrollments, setEnrollments] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchEnrollments()
-      .then(setEnrollment)
+    fetchEnrollments_WithDetails()
+      .then(data => setEnrollments(data))
       .catch(err => setError(err.message));
   }, []);
 
   if (error) return <p className="text-red-500">Error: {error}</p>;
+
+  // Function to format date strings into a more readable format
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
 
   return (
     <div>
@@ -21,9 +33,12 @@ export default function EnrollmentList() {
       ) : (
         <ul className="list-disc pl-5">
           {enrollments.map(enrollment => (
-            //TODO Format enrollment.enrolledAt to a readable date format
-            //TODO get student data and course data for each enrollment
-            <li key={enrollment.id}>enrolledAt: {enrollment.enrolledAt}</li>
+            // Display each enrollment with student and course details - Name, email, course name, and enrollment date
+            <li key={enrollment.id} className="mb-2">
+              <strong>{enrollment.studentFirstName} {enrollment.studentLastName}</strong> (
+              {enrollment.studentEmail}) enrolled in <em>{enrollment.courseName}</em> on{' '}
+              {formatDate(enrollment.enrolledAt)}
+            </li>
           ))}
         </ul>
       )}

@@ -11,5 +11,6 @@ namespace Lms_Backend.Interfaces
         bool DeleteEnrollment(string id);
         List<Enrollment> GetEnrollmentsByStudentEmail(string email);
         List<Enrollment> GetEnrollmentsByStudentId(string studentId);
+        List<EnrollmentDto> GetAllEnrollmentDtos();
     }
 }

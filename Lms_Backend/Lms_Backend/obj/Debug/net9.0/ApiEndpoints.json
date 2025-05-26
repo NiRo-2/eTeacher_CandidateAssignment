@@ -222,6 +222,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Lms_Backend.Controllers.EnrollmentController",
+    "Method": "GetAllWithDetails",
+    "RelativePath": "api/Enrollment/with-details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Lms_Backend.Controllers.StudentController",
     "Method": "GetAll",
     "RelativePath": "api/Student",

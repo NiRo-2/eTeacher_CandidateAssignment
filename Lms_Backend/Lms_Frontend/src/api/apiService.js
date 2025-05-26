@@ -14,8 +14,8 @@ export async function fetchCourses() {
  * 
  * @returns {Promise<Array>} Returns a promise that resolves to an array of enrollments.
  */
-export async function fetchEnrollments() {
-  const res = await fetch(`${API_BASE_URL}/enrollment`);
+export async function fetchEnrollments_WithDetails() {
+  const res = await fetch(`${API_BASE_URL}/enrollment/with-details`);
   if (!res.ok) throw new Error('Failed to fetch enrollments');
   return res.json();
 }

@@ -8,19 +8,38 @@ namespace Lms_Backend
     /// </summary>
     public class DbSeeder
     {
-        public static void Seed(IDataContext context)
+        /// <summary>
+        /// Seeds the in-memory database with initial data for students, courses, and enrollments.
+        /// </summary>
+        /// <param name="courseService"></param>
+        /// <param name="enrollmentService"></param>
+        /// <param name="studentService"></param>
+        /// <exception cref="Exception"></exception>
+        public static void Seed(ICourseService courseService,IEnrollmentService enrollmentService,IStudentService studentService)
         {
             // Seed students
-            bool added1 = context.Students.TryAdd("1", new Student { Id = "1", FirstName = "Alice", LastName = "Blond", Email = "bla@na.com" });
-            bool added2 = context.Students.TryAdd("2", new Student { Id = "2", FirstName = "Darda", LastName = "Saba", Email = "darda@saba.com" });
+            studentService.AddStudent(new Student() { FirstName = "Alice", LastName = "Blond", Email = "bla@na.com" });
+            studentService.AddStudent(new Student() { FirstName = "Darda", LastName = "Saba", Email = "darda@saba.com" });
+            // Verify seeding by checking the count of students(and get their IDs)
+            List<Student> students = studentService.GetAllStudents();
+            if (students.Count != 2) throw new Exception("Error while seeding students");
 
             // Seed courses
-            bool course1 = context.Courses.TryAdd("101", new Course { Id = "101", Name = "Math", Description = "Desc1", MaxCapacity = 2 });
-            bool course2 = context.Courses.TryAdd("102", new Course { Id = "102", Name = "History", Description = "Desc2", MaxCapacity = 1 });
+            courseService.AddCourse(new Course {Name = "Math", Description = "Desc1", MaxCapacity = 2 });
+            courseService.AddCourse(new Course {Name = "History", Description = "Desc2", MaxCapacity = 2 });
+
+            // Get all courses to verify seeding (and to get their IDs)
+            List<Course> courses= courseService.GetAllCourses();
+            if(courses.Count != 2) throw new Exception("Error while seeding courses");
 
             // Seed enrollments
-            bool enroll1 = context.Enrollments.TryAdd("1-101", new Enrollment { StudentId = "1", CourseId = "101" });
-            bool enroll2 = context.Enrollments.TryAdd("2-102", new Enrollment { StudentId = "2", CourseId = "102" });
+            enrollmentService.AddEnrollment(new Enrollment { StudentId = students[0].Id, CourseId = courses[0].Id }); //student 0 enrolls in course 1 only
+            enrollmentService.AddEnrollment(new Enrollment { StudentId = students[1].Id, CourseId = courses[0].Id }); //student 1 enrolls in course 1+2
+            enrollmentService.AddEnrollment(new Enrollment { StudentId = students[1].Id, CourseId = courses[1].Id });
+
+            // Verify seeding by checking the count of enrollments
+            List<Enrollment> enrollments = enrollmentService.GetAllEnrollments();
+            if (enrollments.Count != 3) throw new Exception("Error while seeding enrollments");
         }
     }
 }

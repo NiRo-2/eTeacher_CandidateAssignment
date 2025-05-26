@@ -39,7 +39,7 @@ namespace Lms_Backend
             });
         }
 
-        // Configure middleware
+        //Configure medthods
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseHttpsRedirection();
@@ -52,8 +52,10 @@ namespace Lms_Backend
             });
 
             //Adding fake data to the in-memory database
-            var context = app.ApplicationServices.GetRequiredService<IDataContext>();
-            DbSeeder.Seed(context);
+            var courseService = app.ApplicationServices.GetRequiredService<ICourseService>();
+            var enrollmentService= app.ApplicationServices.GetRequiredService<IEnrollmentService>();
+            var studentService= app.ApplicationServices.GetRequiredService<IStudentService>();
+            DbSeeder.Seed(courseService, enrollmentService, studentService);
         }
     }
 }

@@ -18,6 +18,37 @@ namespace Lms_Backend.Services
         public List<Enrollment> GetAllEnrollments() => _context.Enrollments.Values.ToList();
 
         /// <summary>
+        /// Retrieves all enrollments as DTOs for easier consumption by clients
+        /// </summary>
+        /// <returns></returns>
+        public List<EnrollmentDto> GetAllEnrollmentDtos()
+        {
+            var enrollments = _context.Enrollments.Values.ToList();
+            var enrollmentDtos = enrollments.Select(e =>
+            {
+                _context.Students.TryGetValue(e.StudentId, out var student); //get student by ID
+                _context.Courses.TryGetValue(e.CourseId, out var course); //get course by ID
+
+                // Validate that both student and course exist
+                if (student == null || course == null)
+                    _logger.LogWarning("Enrollment {EnrollmentId} references non-existing student or course.", e.Id);
+
+                // Create the DTO
+                return new EnrollmentDto
+                {
+                    Id = e.Id,
+                    EnrolledAt = e.EnrolledAt.ToLocalTime().DateTime,
+                    StudentFirstName = student?.FirstName ?? "Unknown",
+                    StudentLastName = student?.LastName ?? "Unknown",
+                    StudentEmail = student?.Email ?? "Unknown",
+                    CourseName = course?.Name ?? "Unknown"
+                };
+            }).ToList();
+
+            return enrollmentDtos;
+        }
+
+        /// <summary>
         /// Retrieves an enrollment by its ID
         /// </summary>
         /// <param name="id"></param>
@@ -96,7 +127,7 @@ namespace Lms_Backend.Services
         /// <returns></returns>
         public List<Enrollment> GetEnrollmentsByStudentEmail(string email)
         {
-            var student = _context.Students.Values.FirstOrDefault(s => s.Id == email);
+            var student = _context.Students.Values.FirstOrDefault(s => s.Email == email);
             if (student == null)
             {
                 _logger.LogWarning("No student found with email: {Email}", email);

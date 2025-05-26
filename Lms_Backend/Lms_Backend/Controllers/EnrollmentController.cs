@@ -26,6 +26,17 @@ namespace Lms_Backend.Controllers
         }
 
         /// <summary>
+        /// Retrieves all enrollments with details (DTOs).
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("with-details")]
+        public IActionResult GetAllWithDetails()
+        {
+            var dtos = _enrollmentService.GetAllEnrollmentDtos();
+            return Ok(dtos);
+        }
+
+        /// <summary>
         /// Retrieves an enrollment by its ID.
         /// </summary>
         /// <param name="id"></param>

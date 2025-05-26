@@ -212,6 +212,18 @@
         }
       }
     },
+    "/api/Enrollment/with-details": {
+      "get": {
+        "tags": [
+          "Enrollment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Enrollment/{id}": {
       "get": {
         "tags": [
