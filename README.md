@@ -5,6 +5,7 @@ A lightweight Learning Management System (LMS) for managing students, courses, a
 ?? Features
 
     Manage Courses: View, Add, Edit, Delete
+    
     Manage Students: Add, Update, Delete
     Enroll students in courses
     View and manage enrollments
