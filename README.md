@@ -1,43 +1,52 @@
-eTeacher_CandidateAssignment - LMS Dashboard
-? Overview
+# eTeacher_CandidateAssignment - LMS Dashboard
 
-A lightweight Learning Management System (LMS) for managing students, courses, and enrollments. Built with ASP.NET Core and using an in-memory data store for simplicity and speed, ReactJS for UI.
-?? Features
+## ✅ Overview
 
-    Manage Courses: View, Add, Edit, Delete
-    Manage Students: Add, Update, Delete
-    Enroll students in courses
-    View and manage enrollments
-    Generate enrollment reports (export to JSON, upload to AWS S3)
-    Basic unit tests with xUnit covering core functionalities
-    Uses UUIDs for safe and unique identifiers (non-sequential IDs)
+A lightweight Learning Management System (LMS) for managing students, courses, and enrollments. Built with ASP.NET Core and an in-memory data store for simplicity and speed. ReactJS is used for the frontend UI.
 
-?? Tech Stack
+## ✨ Features
 
-    C# (ASP.NET Core) backend RESTful API
-    In-memory data storage using ConcurrentDictionary
-    xUnit for automated testing
-    React frontend (Simple React UI)
+- Manage Courses: View, Add, Edit, Delete  
+- Manage Students: Add, Update, Delete  
+- Enroll students in courses  
+- View and manage enrollments  
+- Generate enrollment reports (export to JSON, upload to AWS S3)  
+- Basic unit tests with xUnit covering core functionalities  
+- Uses UUIDs for safe and unique identifiers (non-sequential IDs)  
 
-??? Setup Instructions
-*Clone the repository*
+## 🧰 Tech Stack
 
-Backend:
-	
-    Navigate to the backend directory:
-		cd Lms_Backend
-	Run the backend API:
-		dotnet run
-		
-Frontend:
-    Navigate to the frontend directory:
-		cd Lms_Frontend
-	Start the React development server:
-		npm install
-		npm run dev
-		
-Tests:
-	Navigate to the tests directory:
-		cd Lms_Backend.Tests
-	Run all unit tests:
-		dotnet test
+- C# (ASP.NET Core) backend RESTful API  
+- In-memory data storage using `ConcurrentDictionary`  
+- xUnit for automated testing  
+- React frontend (Simple React UI)  
+
+## 🛠 Setup Instructions
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/eTeacher_CandidateAssignment.git
+````
+
+### Backend
+
+```bash
+cd Lms_Backend
+dotnet run
+```
+
+### Frontend
+
+```bash
+cd Lms_Frontend
+npm install
+npm run dev
+```
+
+### Run Tests
+
+```bash
+cd Lms_Backend.Tests
+dotnet test
+```
