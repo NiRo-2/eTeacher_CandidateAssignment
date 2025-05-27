@@ -72,7 +72,6 @@ namespace Lms_Backend.Tests
         {
             var student = new Student
             {
-                Id = "1",
                 FirstName = "Alice",
                 LastName = "Brown",
                 Email = "alice.brown@example.com"
@@ -100,7 +99,6 @@ namespace Lms_Backend.Tests
         {
             var student = new Student
             {
-                Id = "123",
                 FirstName = "Mark",
                 LastName = "Twain",
                 Email = "mark.twain@example.com"
@@ -127,7 +125,6 @@ namespace Lms_Backend.Tests
         {
             var student = new Student
             {
-                Id = "456",
                 FirstName = "Sara",
                 LastName = "Connor",
                 Email = "sara.connor@example.com"
@@ -150,7 +147,6 @@ namespace Lms_Backend.Tests
         {
             var student = new Student
             {
-                Id = "789",
                 FirstName = "James",
                 LastName = "Bond",
                 Email = "james.bond@example.com"

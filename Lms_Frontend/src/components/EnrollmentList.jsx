@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchEnrollments_WithDetails } from '../api/apiService';
 
+// EnrollmentList component to display a list of enrollments with student and course details
 export default function EnrollmentList() {
   const [enrollments, setEnrollments] = useState([]);
   const [error, setError] = useState(null);

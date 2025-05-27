@@ -2,6 +2,35 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "AWSSDK.Core/4.0.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "AWSSDK.S3/4.0.0.7": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[4.0.0.5, 5.0.0)"
+        },
+        "compile": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/9.0.5": {
         "type": "package",
         "dependencies": {
@@ -348,6 +377,61 @@
     }
   },
   "libraries": {
+    "AWSSDK.Core/4.0.0.5": {
+      "sha512": "NG31J9azTmY1GKOZd+MFGLUsuD472AGz4BUceTiw0pdYkexD+xJ8kA87hDp/OTk2b6xgrhkQIpnttzIekkMSvw==",
+      "type": "package",
+      "path": "awssdk.core/4.0.0.5",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.4.0.0.5.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "images/AWSLogo.png",
+        "lib/net472/AWSSDK.Core.dll",
+        "lib/net472/AWSSDK.Core.pdb",
+        "lib/net472/AWSSDK.Core.xml",
+        "lib/net8.0/AWSSDK.Core.dll",
+        "lib/net8.0/AWSSDK.Core.pdb",
+        "lib/net8.0/AWSSDK.Core.xml",
+        "lib/netcoreapp3.1/AWSSDK.Core.dll",
+        "lib/netcoreapp3.1/AWSSDK.Core.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.S3/4.0.0.7": {
+      "sha512": "dFELsA+Y7aXmvCTL83+oIWmr+0s/GpkqCKZK1ac7HPdYQFv+QHEAhrXdCJknsCKqK+v0yefkLzuKuSSP6k4tmA==",
+      "type": "package",
+      "path": "awssdk.s3/4.0.0.7",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
+        "analyzers/dotnet/cs/SharedAnalysisCode.dll",
+        "awssdk.s3.4.0.0.7.nupkg.sha512",
+        "awssdk.s3.nuspec",
+        "images/AWSLogo.png",
+        "lib/net472/AWSSDK.S3.dll",
+        "lib/net472/AWSSDK.S3.pdb",
+        "lib/net472/AWSSDK.S3.xml",
+        "lib/net8.0/AWSSDK.S3.dll",
+        "lib/net8.0/AWSSDK.S3.pdb",
+        "lib/net8.0/AWSSDK.S3.xml",
+        "lib/netcoreapp3.1/AWSSDK.S3.dll",
+        "lib/netcoreapp3.1/AWSSDK.S3.pdb",
+        "lib/netcoreapp3.1/AWSSDK.S3.xml",
+        "lib/netstandard2.0/AWSSDK.S3.dll",
+        "lib/netstandard2.0/AWSSDK.S3.pdb",
+        "lib/netstandard2.0/AWSSDK.S3.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Microsoft.AspNetCore.OpenApi/9.0.5": {
       "sha512": "yZLOciYlpaOO/mHPOpgeSZTv8Lc7fOOVX40eWJJoGs/S9Ny9CymDuKKQofGE9stXGGM9EEnnuPeq0fhR8kdFfg==",
       "type": "package",
@@ -886,6 +970,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "AWSSDK.S3 >= 4.0.0.7",
       "Microsoft.AspNetCore.OpenApi >= 9.0.5",
       "Microsoft.EntityFrameworkCore >= 9.0.5",
       "NLog >= 5.4.0",
@@ -945,6 +1030,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "AWSSDK.S3": {
+            "target": "Package",
+            "version": "[4.0.0.7, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[9.0.5, )"

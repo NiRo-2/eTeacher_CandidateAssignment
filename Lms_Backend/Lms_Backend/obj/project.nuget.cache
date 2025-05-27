@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "o8O8vsSHzhM=",
+  "dgSpecHash": "xjgWsM8fV/A=",
   "success": true,
   "projectFilePath": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Lms_Backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nir\\.nuget\\packages\\awssdk.core\\4.0.0.5\\awssdk.core.4.0.0.5.nupkg.sha512",
+    "C:\\Users\\Nir\\.nuget\\packages\\awssdk.s3\\4.0.0.7\\awssdk.s3.4.0.0.7.nupkg.sha512",
     "C:\\Users\\Nir\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
     "C:\\Users\\Nir\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.5\\microsoft.entityframeworkcore.9.0.5.nupkg.sha512",
     "C:\\Users\\Nir\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.5\\microsoft.entityframeworkcore.abstractions.9.0.5.nupkg.sha512",

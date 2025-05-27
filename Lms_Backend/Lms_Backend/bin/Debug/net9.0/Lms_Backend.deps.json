@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "Lms_Backend/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "4.0.0.7",
           "Microsoft.AspNetCore.OpenApi": "9.0.5",
           "Microsoft.EntityFrameworkCore": "9.0.5",
           "NLog": "5.4.0",
@@ -18,6 +19,25 @@
         },
         "runtime": {
           "Lms_Backend.dll": {}
+        }
+      },
+      "AWSSDK.Core/4.0.0.5": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.5"
+          }
+        }
+      },
+      "AWSSDK.S3/4.0.0.7": {
+        "dependencies": {
+          "AWSSDK.Core": "4.0.0.5"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.7"
+          }
         }
       },
       "Microsoft.AspNetCore.OpenApi/9.0.5": {
@@ -225,6 +245,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/4.0.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NG31J9azTmY1GKOZd+MFGLUsuD472AGz4BUceTiw0pdYkexD+xJ8kA87hDp/OTk2b6xgrhkQIpnttzIekkMSvw==",
+      "path": "awssdk.core/4.0.0.5",
+      "hashPath": "awssdk.core.4.0.0.5.nupkg.sha512"
+    },
+    "AWSSDK.S3/4.0.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dFELsA+Y7aXmvCTL83+oIWmr+0s/GpkqCKZK1ac7HPdYQFv+QHEAhrXdCJknsCKqK+v0yefkLzuKuSSP6k4tmA==",
+      "path": "awssdk.s3/4.0.0.7",
+      "hashPath": "awssdk.s3.4.0.0.7.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/9.0.5": {
       "type": "package",

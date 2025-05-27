@@ -50,3 +50,5 @@ D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_Candid
 D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
 D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\AWSSDK.Core.dll
+D:\Nir\P\GoogleDrive\Documents\Work\eTeacher\CandidateAssignment\eTeacher_CandidateAssignment\Lms_Backend\Lms_Backend\bin\Debug\net9.0\AWSSDK.S3.dll

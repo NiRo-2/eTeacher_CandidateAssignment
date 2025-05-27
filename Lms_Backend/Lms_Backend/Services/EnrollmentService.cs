@@ -86,6 +86,8 @@ namespace Lms_Backend.Services
             enrollment.EnrolledAt = DateTimeOffset.Now;
             if (!_context.Enrollments.TryAdd(enrollment.Id, enrollment))
                 throw new InvalidOperationException("Failed to add enrollment.");
+
+            _logger.LogInformation("Enrollment {EnrollmentId} added successfully for student {StudentId} in course {CourseId}.", enrollment.Id, enrollment.StudentId, enrollment.CourseId);
         }
 
         /// <summary>
@@ -112,6 +114,9 @@ namespace Lms_Backend.Services
             int currentEnrollmentCount = _context.Enrollments.Values.Count(e => e.CourseId == enrollment.CourseId);
             if (currentEnrollmentCount >= course.MaxCapacity && _context.Enrollments[id].CourseId != enrollment.CourseId)
                 throw new InvalidOperationException("Course has reached its maximum capacity.");
+
+            //log new update
+            _logger.LogInformation($"Updating enrollment {id} for student {_context.Enrollments[id].StudentId}-->{enrollment.StudentId} in course{_context.Enrollments[id].CourseId}-->{enrollment.CourseId} EnrolledAt {_context.Enrollments[id].EnrolledAt}-->{enrollment.EnrolledAt}.");
 
             // Update the enrollment details
             _context.Enrollments[id].StudentId = enrollment.StudentId;
@@ -153,7 +158,37 @@ namespace Lms_Backend.Services
         /// <returns></returns>
         public bool DeleteEnrollment(string id)
         {
+            // Check if the enrollment exists before attempting to delete
+            if (!_context.Enrollments.ContainsKey(id))
+            {
+                _logger.LogWarning("Attempted to delete non-existing enrollment with ID: {Id}", id);
+                return false;
+            }
+
+            // Log the deletion attempt
+            _logger.LogInformation("Deleting enrollment with ID: {Id}", id);
             return _context.Enrollments.TryRemove(id,out _);
+        }
+
+        /// <summary>
+        /// Retrieves all enrollments for a specific course by its ID
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        public List<Enrollment> GetEnrollmentsByCourseId(string courseId)
+        {
+            List<Enrollment> enrollments = _context.Enrollments.Values
+                .Where(e => e.CourseId == courseId)
+                .ToList();
+
+            // Log if no enrollments found for the course and return an empty list
+            if (enrollments.Count == 0)
+            {
+                _logger.LogWarning("No enrollments found for course ID: {CourseId}", courseId);
+                return new List<Enrollment>();
+            }
+
+            return enrollments;
         }
     }
 }

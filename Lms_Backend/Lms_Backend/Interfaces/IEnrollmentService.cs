@@ -12,5 +12,6 @@ namespace Lms_Backend.Interfaces
         List<Enrollment> GetEnrollmentsByStudentEmail(string email);
         List<Enrollment> GetEnrollmentsByStudentId(string studentId);
         List<EnrollmentDto> GetAllEnrollmentDtos();
+        List<Enrollment> GetEnrollmentsByCourseId(string courseId);
     }
 }

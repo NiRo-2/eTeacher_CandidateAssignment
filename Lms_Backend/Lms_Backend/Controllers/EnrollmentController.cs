@@ -135,5 +135,21 @@ namespace Lms_Backend.Controllers
             if (enrollments == null || !enrollments.Any()) return NotFound();
             return Ok(enrollments);
         }
+
+        /// <summary>
+        /// Retrieves enrollments by course ID.
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        [HttpGet("course/{courseId}")]
+        public ActionResult<IEnumerable<Enrollment>> GetEnrollmentsByCourseId(string courseId)
+        {
+            var enrollments = _enrollmentService.GetEnrollmentsByCourseId(courseId);
+
+            if (enrollments == null || !enrollments.Any())
+                return NotFound($"No enrollments found for course ID: {courseId}");
+
+            return Ok(enrollments);
+        }
     }
 }

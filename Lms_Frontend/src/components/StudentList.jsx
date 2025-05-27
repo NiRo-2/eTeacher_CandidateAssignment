@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchStudents } from '../api/apiService';
 
+//display a list of students fetched from the API
 export default function StudentList() {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);

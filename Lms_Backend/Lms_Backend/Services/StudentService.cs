@@ -51,7 +51,7 @@ namespace Lms_Backend.Services
             student.Id = Guid.NewGuid().ToString();
 
             //validate email address
-            if (!new EmailAddressAttribute().IsValid((student.Email)))
+            if (!IsEmailValid((student.Email)))
                 throw new ArgumentException("Invalid email address format.");
 
             //Making sure email is unique (not exists by another student)
@@ -59,6 +59,8 @@ namespace Lms_Backend.Services
                 throw new InvalidOperationException("A student with the same email already exists.");
 
             _context.Students[student.Id] = student;
+
+            _logger.LogInformation($"Student {student} with ID {student.Id} added successfully.");
         }
 
         /// <summary>
@@ -72,7 +74,7 @@ namespace Lms_Backend.Services
             if (!_context.Students.ContainsKey(id)) return false;
 
             //validate email address
-            if(!new EmailAddressAttribute().IsValid((student.Email)))
+            if (!IsEmailValid((student.Email)))
                 throw new ArgumentException("Invalid email address format.");
 
             // Check if the new email is already used by another student (except current one)
@@ -82,6 +84,9 @@ namespace Lms_Backend.Services
 
             if (emailInUse) //updated email found - don't allow update
                 throw new InvalidOperationException("A student with the same email already exists.");
+
+            //log change
+            _logger.LogInformation($"Updating student with ID {id}: {_context.Students[id].FirstName}-->{student.FirstName} {_context.Students[id].LastName}-->{student.LastName}, Email: {_context.Students[id].Email}-->{student.Email}");
 
             //all good - update student details
             _context.Students[id].FirstName = student.FirstName;
@@ -98,11 +103,31 @@ namespace Lms_Backend.Services
         /// <returns></returns>
         public bool DeleteStudent(string id)
         {
+            // Check if the student exists
+            if (!_context.Students.ContainsKey(id))
+            {
+                _logger.LogWarning($"Attempted to delete non-existing student with ID {id}");
+                return false;
+            }
+
             //**Note** for now instead of archiving/removing all related enrollments, just log a warning of x orphan enrollments stay on db
             int orphanEnrollments = _context.Enrollments.Values.Count(e => e.StudentId == id);
             _logger.LogWarning($"Student id: {id} has {orphanEnrollments} orphan enrollments that will not be deleted.");
 
-            return _context.Students.TryRemove(id,out _);
+            //log deletion
+            _logger.LogInformation($"Deleting student (ID {id}): {_context.Students[id]}");
+
+            return _context.Students.TryRemove(id, out _);
+        }
+
+        /// <summary>
+        /// Validates the format of an email address.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        private bool IsEmailValid(string email)
+        {
+            return new EmailAddressAttribute().IsValid(email);
         }
     }
 }

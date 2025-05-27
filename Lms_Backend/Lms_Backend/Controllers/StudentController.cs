@@ -74,7 +74,7 @@ namespace Lms_Backend.Controllers
                 _studentService.AddStudent(student);
                 return CreatedAtAction(nameof(GetById), new { id = student.Id }, student);
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
                 return Conflict(new { message = ex.Message });
             }
@@ -100,7 +100,7 @@ namespace Lms_Backend.Controllers
                 if (!result) return NotFound();
                 return NoContent();
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
                 return Conflict(new { message = ex.Message });
             }

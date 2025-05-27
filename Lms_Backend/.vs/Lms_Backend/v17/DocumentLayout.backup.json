@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|d:\\nir\\p\\googledrive\\documents\\work\\eteacher\\candidateassignment\\eteacher_candidateassignment\\lms_backend\\lms_backend\\services\\enrollmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|solutionrelative:lms_backend\\services\\enrollmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|d:\\nir\\p\\googledrive\\documents\\work\\eteacher\\candidateassignment\\eteacher_candidateassignment\\lms_backend\\lms_backend\\controllers\\enrollmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|solutionrelative:lms_backend\\controllers\\enrollmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|d:\\nir\\p\\googledrive\\documents\\work\\eteacher\\candidateassignment\\eteacher_candidateassignment\\lms_backend\\lms_backend\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|solutionrelative:lms_backend\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|d:\\nir\\p\\googledrive\\documents\\work\\eteacher\\candidateassignment\\eteacher_candidateassignment\\lms_backend\\lms_backend\\datacontext .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|solutionrelative:lms_backend\\datacontext .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|d:\\nir\\p\\googledrive\\documents\\work\\eteacher\\candidateassignment\\eteacher_candidateassignment\\lms_backend\\lms_backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|solutionrelative:lms_backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4875EE18-40BC-4FE3-9222-36D00C16823D}|Lms_Backend\\Lms_Backend.csproj|d:\\nir\\p\\googledrive\\documents\\work\\eteacher\\candidateassignment\\eteacher_candidateassignment\\lms_backend\\lms_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,77 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EnrollmentController.cs",
-              "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Controllers\\EnrollmentController.cs",
-              "RelativeDocumentMoniker": "Lms_Backend\\Controllers\\EnrollmentController.cs",
-              "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Controllers\\EnrollmentController.cs",
-              "RelativeToolTip": "Lms_Backend\\Controllers\\EnrollmentController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCUAAAAAAAAAAAAAAA==",
+              "Title": "EnrollmentService.cs",
+              "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Services\\EnrollmentService.cs",
+              "RelativeDocumentMoniker": "Lms_Backend\\Services\\EnrollmentService.cs",
+              "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Services\\EnrollmentService.cs",
+              "RelativeToolTip": "Lms_Backend\\Services\\EnrollmentService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T11:11:24.713Z",
+              "WhenOpened": "2025-05-27T09:52:43.678Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DbSeeder.cs",
-              "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\DbSeeder.cs",
-              "RelativeDocumentMoniker": "Lms_Backend\\DbSeeder.cs",
-              "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\DbSeeder.cs",
-              "RelativeToolTip": "Lms_Backend\\DbSeeder.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCwAAAABAAAAAAAAAA==",
+              "Title": "EnrollmentController.cs",
+              "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Controllers\\EnrollmentController.cs",
+              "RelativeDocumentMoniker": "Lms_Backend\\Controllers\\EnrollmentController.cs",
+              "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Controllers\\EnrollmentController.cs",
+              "RelativeToolTip": "Lms_Backend\\Controllers\\EnrollmentController.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T06:17:03.5Z",
+              "WhenOpened": "2025-05-27T09:52:31.037Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DataContext .cs",
-              "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\DataContext .cs",
-              "RelativeDocumentMoniker": "Lms_Backend\\DataContext .cs",
-              "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\DataContext .cs",
-              "RelativeToolTip": "Lms_Backend\\DataContext .cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T06:15:47.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\appsettings.json",
-              "RelativeDocumentMoniker": "Lms_Backend\\appsettings.json",
-              "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\appsettings.json",
-              "RelativeToolTip": "Lms_Backend\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-26T05:48:33.87Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Program.cs",
               "RelativeDocumentMoniker": "Lms_Backend\\Program.cs",
               "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Program.cs",
               "RelativeToolTip": "Lms_Backend\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-25T06:24:56.14Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Startup.cs",
               "DocumentMoniker": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Startup.cs",
               "RelativeDocumentMoniker": "Lms_Backend\\Startup.cs",
               "ToolTip": "D:\\Nir\\P\\GoogleDrive\\Documents\\Work\\eTeacher\\CandidateAssignment\\eTeacher_CandidateAssignment\\Lms_Backend\\Lms_Backend\\Startup.cs",
               "RelativeToolTip": "Lms_Backend\\Startup.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAewDwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-25T06:24:16.582Z",
               "EditorCaption": ""

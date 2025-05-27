@@ -7,7 +7,7 @@ namespace Lms_Backend.Services
     {
         private readonly IDataContext _context;
         private readonly ILogger<CourseService> _logger;
-        public CourseService(ILogger<CourseService> logger,IDataContext dataContext)
+        public CourseService(ILogger<CourseService> logger, IDataContext dataContext)
         {
             _logger = logger;
             _context = dataContext;
@@ -15,6 +15,37 @@ namespace Lms_Backend.Services
 
         //get all courses
         public List<Course> GetAllCourses() => _context.Courses.Values.ToList();
+
+        /// <summary>
+        /// Retrieves all courses along with their enrolled students
+        /// </summary>
+        /// <returns></returns>
+        public List<CourseWithStudentsDto> GetAllCoursesWithStudents()
+        {
+            return _context.Courses.Values.Select(course =>
+            {
+                // Get the IDs of students enrolled in the course
+                var enrolledStudentIds = _context.Enrollments.Values
+                    .Where(e => e.CourseId == course.Id)
+                    .Select(e => e.StudentId)
+                    .ToList();
+
+                // Retrieve students enrolled in the course
+                var students = _context.Students.Values
+                    .Where(s => enrolledStudentIds.Contains(s.Id))
+                    .ToList();
+
+                // Create a CourseWithStudentsDto to return the course details along with the enrolled students
+                return new CourseWithStudentsDto
+                {
+                    Id = course.Id,
+                    Name = course.Name,
+                    Description = course.Description,
+                    MaxCapacity = course.MaxCapacity,
+                    Students = students
+                };
+            }).ToList();
+        }
 
         /// <summary>
         /// Retrieves a course by its ID
@@ -33,12 +64,19 @@ namespace Lms_Backend.Services
         /// <param name="course"></param>
         public void AddCourse(Course course)
         {
+            // Validate course properties
+            if (string.IsNullOrWhiteSpace(course.Name)) throw new ArgumentException("Course name cannot be empty.");
+            if (course.MaxCapacity <= 0) throw new ArgumentException("Max capacity must be greater than zero.");
+
             //validate no duplicate course names
-            if(_context.Courses.Values.Any(c => c.Name.Equals(course.Name, StringComparison.OrdinalIgnoreCase)))
+            if (_context.Courses.Values.Any(c => c.Name.Equals(course.Name, StringComparison.OrdinalIgnoreCase)))
                 throw new ArgumentException("A course with the same name already exists.");
 
             course.Id = Guid.NewGuid().ToString(); //generate a new ID for the course
             _context.Courses[course.Id] = course;
+
+            // Log the addition of the course
+            _logger.LogInformation($"Course added: {course.Name} (ID: {course.Id})");
         }
 
         /// <summary>
@@ -55,10 +93,19 @@ namespace Lms_Backend.Services
             if (_context.Courses.Values.Any(c => c.Name.Equals(updatedCourse.Name, StringComparison.OrdinalIgnoreCase) && c.Id != id))
                 throw new ArgumentException("A course with the same name already exists.");
 
+            //validate max capacity will not be less than current enrollments
+            int currentEnrollments = _context.Enrollments.Values.Count(e => e.CourseId == id);
+            if(updatedCourse.MaxCapacity < currentEnrollments)
+                throw new ArgumentException($"Max capacity cannot be less than the current number of enrollments ({currentEnrollments}).");
+
+            //log course update
+            _logger.LogInformation($"Updating course (ID: {id}): Name: {_context.Courses[id].Name}-->{updatedCourse.Name} Description: {_context.Courses[id].Description}-->{updatedCourse.Description} MaxCapacity: {_context.Courses[id].MaxCapacity}-->{updatedCourse.MaxCapacity}");
+
             // Update the course details
             _context.Courses[id].Name = updatedCourse.Name;
             _context.Courses[id].Description = updatedCourse.Description;
             _context.Courses[id].MaxCapacity = updatedCourse.MaxCapacity;
+
             return true;
         }
 
@@ -70,22 +117,12 @@ namespace Lms_Backend.Services
         public bool DeleteCourse(string id)
         {
             //**Note** for now just log warning of x orphan enrollments stay on db with ghost course
-            int enrollmentCount = GetEnrollmentsByCourseId(id).Count;
+            int enrollmentCount = _context.Enrollments.Values.Count(e => e.CourseId == id);
             _logger.LogWarning($"{id} has {enrollmentCount} orphan enrollments that will not be deleted.");
 
+            //log course deletion
+            _logger.LogInformation($"Deleting course (ID: {id}): Name: {_context.Courses[id].Name}");
             return _context.Courses.TryRemove(id, out _);
-        }
-
-        /// <summary>
-        /// Get all enrollments for a course by its ID
-        /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns></returns>
-        public List<Enrollment> GetEnrollmentsByCourseId(string courseId)
-        {
-            return _context.Enrollments.Values
-                .Where(e => e.CourseId == courseId)
-                .ToList();
         }
     }
 }

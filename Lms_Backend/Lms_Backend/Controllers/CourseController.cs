@@ -27,6 +27,16 @@ namespace Lms_Backend.Controllers
         }
 
         /// <summary>
+        /// Retrieves all courses along with their enrolled students.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("with-students")]
+        public ActionResult<List<CourseWithStudentsDto>> GetCoursesWithStudents()
+        {
+            return Ok(_courseService.GetAllCoursesWithStudents());
+        }
+
+        /// <summary>
         /// Retrieves a course by its ID.
         /// </summary>
         /// <param name="id"></param>
@@ -57,7 +67,7 @@ namespace Lms_Backend.Controllers
                 _courseService.AddCourse(course);
                 return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
                 return Conflict(new { message = ex.Message });
             }
@@ -83,7 +93,7 @@ namespace Lms_Backend.Controllers
                 if (!result) return NotFound();
                 return NoContent();
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
                 return Conflict(new { message = ex.Message });
             }
@@ -102,36 +112,6 @@ namespace Lms_Backend.Controllers
             var result = _courseService.DeleteCourse(id);
             if (!result) return NotFound();
             return NoContent();
-        }
-
-        /// <summary>
-        /// Retrieves all students enrolled in a course by its ID.
-        /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns></returns>
-        [HttpGet("courses/{courseId}/students")]
-        public IActionResult GetStudentsByCourseId(string courseId)
-        {
-            if (string.IsNullOrWhiteSpace(courseId)) return BadRequest("courseId is required.");
-
-            var enrollments = _courseService.GetEnrollmentsByCourseId(courseId);
-            if (enrollments == null || !enrollments.Any()) return NotFound();
-            return Ok(enrollments);
-        }
-
-        /// <summary>
-        /// Retrieves all enrollments for a course by its ID.
-        /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns></returns>
-        [HttpGet("courses/{courseId}/enrollments")]
-        public IActionResult GetEnrolmentsByCourseId(string courseId)
-        {
-            if (string.IsNullOrWhiteSpace(courseId)) return BadRequest("courseId is required.");
-
-            var enrollments = _courseService.GetEnrollmentsByCourseId(courseId);
-            if (enrollments == null || !enrollments.Any()) return NotFound();
-            return Ok(enrollments);
         }
     }
 }

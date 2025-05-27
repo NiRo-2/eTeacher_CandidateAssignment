@@ -11,5 +11,10 @@ namespace Lms_Backend.Models
         public string LastName { get; set; } = "";
         [EmailAddress]
         public string Email { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} ({Email})";
+        }
     }
 }

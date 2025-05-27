@@ -7,8 +7,6 @@ namespace Lms_Backend
     {
         //TODO in real life project:
         //IpRateLimiting, Authentication, Authorization, SSL (With auto renewing), Db and etc
-
-        //TODO maybe add aws sdk for S3 demo
         public static void Main(string[] args)
         {
             var logger = LogManager.Setup().LoadConfigurationFromFile("NLog.config").GetCurrentClassLogger();

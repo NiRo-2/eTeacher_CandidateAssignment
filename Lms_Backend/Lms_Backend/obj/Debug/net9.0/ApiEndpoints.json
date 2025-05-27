@@ -80,35 +80,23 @@
   },
   {
     "ContainingType": "Lms_Backend.Controllers.CourseController",
-    "Method": "GetEnrolmentsByCourseId",
-    "RelativePath": "api/Course/courses/{courseId}/enrollments",
+    "Method": "GetCoursesWithStudents",
+    "RelativePath": "api/Course/with-students",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "courseId",
-        "Type": "System.String",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.List\u00601[[Lms_Backend.Models.CourseWithStudentsDto, Lms_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Lms_Backend.Controllers.CourseController",
-    "Method": "GetStudentsByCourseId",
-    "RelativePath": "api/Course/courses/{courseId}/students",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "courseId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
     "ContainingType": "Lms_Backend.Controllers.EnrollmentController",
@@ -223,9 +211,45 @@
   },
   {
     "ContainingType": "Lms_Backend.Controllers.EnrollmentController",
+    "Method": "GetEnrollmentsByCourseId",
+    "RelativePath": "api/Enrollment/course/{courseId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Lms_Backend.Models.Enrollment, Lms_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Lms_Backend.Controllers.EnrollmentController",
     "Method": "GetAllWithDetails",
     "RelativePath": "api/Enrollment/with-details",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lms_Backend.Controllers.ReportController",
+    "Method": "UploadReportToS3",
+    "RelativePath": "api/report/upload",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
